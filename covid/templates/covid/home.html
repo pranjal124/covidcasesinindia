@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'covid/css/bootstrap.css' %}">
+     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <title></title>
+    <style media="screen">
+      .len{
+        height: 60px;
+      }
+      .nitem{
+        font-size: 20px;
+        font-family: cursive;
+      }
+      .da1{
+       opacity:0;
+     }
+     .da1.animate__animated{
+       opacity:1;
+     }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="home">
+
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="font-size:25px">COVIDCASES INDIA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse "  id="navbarNavDropdown">
+          <div class="navbar-nav d-flex justify-content-center" >
+            <a class="nav-item nav-link nitem" href="#home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link nitem" href="#state">Statewise Cases</a>
+            <a class="nav-item nav-link nitem" href="#allcases">All India Cases</a>
+
+
+
+
+
+      </div>
+      </div>
+
+      </nav>
+
+
+    <h3 class="alert alert-danger text-center card border-danger mt-3">Covid-19 Cases In India </h3>
+    <div class="container mt-5">
+      <div class="row featurette d-flex justify-content-center align-items-center container">
+            <div class="col-md-6 card1">
+
+              <h2 class="featurette-heading" style="color:#800000">Fight with <span style="color:black"> Covid-19.</span></h2>
+               <small></small>
+              <p class="lead">As much as possible, keep away from other people and pets in the home.
+Wear a mask if they must be around other people. Masks shouldn't be worn by kids younger than 2 years old or anyone who has trouble breathing. For more about masks, check the CDC's guide.
+takes all covid precautions to win in this pandemic.</p>
+            </div>
+            <div class="col-md-6 pic1">
+          <img src="{% static 'covid/media/covidpre.jpg' %}" class="d-block w-100 card-img-top ml-3" alt="..." style="width:450px;height:400px;">
+        </div>
+      </div>
+    </div>
+    <h4 class="coontainer alert alert-success card border-success text-center">Total Covid-19 Cases in India</h4>
+ <div class="row mx-auto ml-2">
+   <div class=" mb-3 col-sm da1">
+   <div class="card-body text-success">
+     <h4 class="card-title ml-2">Confirmed Cases</h4>
+     <h2 class="card-title text center ml-2">{{conf}}</h2>
+   </div>
+ </div>
+ <div class=" mb-3 col-sm ml-1 da1">
+ <div class="card-body text-success">
+   <h4 class="card-title">Recovered Cases</h4>
+   <h2 class="card-title text center">{{reco}}</h2>
+ </div>
+</div>
+<div class="mb-3 col-sm ml-1 da1">
+<div class="card-body text-danger">
+  <h4 class="card-title">Deaths</h4>
+  <h2 class="card-title text center">{{death}}</h2>
+</div>
+</div>
+<div class="mb-3 col-sm ml-1 da1">
+<div class="card-body text-success">
+  <h4 class="card-title">Active Cases</h4>
+  <h2 class="card-title text center">{{acti}}</h2>
+</div>
+</div>
+ </div>
+ <h4 class="alert alert-success card border-success text-center" id="state"> Search Covid-19 cases in your States</h4>
+     <div class="container mx-auto ml-5 text-center">
+       <form class="form-inline mx-auto" action="" method="post">
+         {% csrf_token %}
+         <select class="form-control card border-success ml-3" name="state" required="true" style="width:400px;">
+              <option selected disabled="true">--Select Your state--</option>
+              <option>Andhra Pradesh</option>
+              <option>Andaman and Nicobar Islands</option>
+               <option>Arunachal Pradesh</option>
+               <option>Assam</option>
+               <option>Bihar</option>
+               <option>Chandigarh</option>
+               <option>Chhattisgarh</option>
+               <option>Dadra and Nagar Haveli and Daman and Diu</option>
+               <option>Delhi</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Jammu & Kashmir</option>
+                <option>Himachal Pradesh</option>
+                 <option>Jharkhand</option>
+                 <option>Karnataka</option>
+                 <option>Kerala</option>
+                 <option>Ladakh</option>
+                 <option>Lakshadweep</option>
+                 <option>Madhya Pradesh</option>
+                  <option>Maharashtra</option>
+                  <option>Manipur</option>
+                  <option>Meghalaya</option>
+                  <option>Mizoram</option>
+                  <option>Nagaland</option>
+                   <option>Odisha</option>
+                   <option>Puducherry</option>
+                   <option>Punjab</option>
+                   <option>Rajasthan</option>
+                   <option>Sikkim</option>
+                    <option>Tamil Nadu</option>
+                    <option>Telangana</option>
+                    <option>Tripura</option>
+                    <option>Uttarakhand</option>
+                     <option>Uttar Pradesh</option>
+                     <option>West Bengal</option>
+
+             </select>
+
+
+
+             <button type="submit" name="button" class=" btn btn-success ml-3" style="width:150px;">Search</button>
+
+       </form>
+       </div>
+       {% if data1 %}
+       <div class="row mx-auto ml-2">
+         <div class=" mb-3 col-sm">
+         <div class="card-body text-success">
+           <h5 class="card-title ml-2">Confirmed Cases</h5>
+           <h3 class="card-title text center ml-2">{{data1.confirmed}}</h3>
+         </div>
+       </div>
+       <div class=" mb-3 col-sm ml-1">
+       <div class="card-body text-success">
+         <h5 class="card-title">Recovered Cases</h5>
+         <h3 class="card-title text center">{{data1.recovered}}</h3>
+       </div>
+      </div>
+      <div class="mb-3 col-sm ml-1">
+      <div class="card-body text-danger">
+        <h5 class="card-title">Deaths</h5>
+        <h3 class="card-title text center">{{data1.deaths}}</h3>
+      </div>
+      </div>
+      <div class="mb-3 col-sm ml-1">
+      <div class="card-body text-success">
+        <h5 class="card-title">Active Cases</h5>
+        <h3 class="card-title text center">{{data1.active}}</h3>
+      </div>
+      </div>
+      <div class="mb-3 col-sm ml-1">
+      <div class="card-body text-success">
+        <h5 class="card-title">Last update</h5>
+        <h3 class="card-title text center">{{data1.lastupdatedtime}}</h3>
+      </div>
+      </div>
+       </div>
+     {% endif %}
+    <h4 class="alert alert-dark card border-dark text-center mt-4" id="allcases">Update Your Self(All cases are official-Pranjal Maurya)</h4>
+    <div class="container" >
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Confirmed</th>
+            <th>Recovered</th>
+            <th>Deaths</th>
+            <th>Active</th>
+            <th>Lastupdatedtime</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in data %}
+          <tr>
+            <td>{{i.state}}</td>
+            <td>{{i.confirmed}}</td>
+            <td>{{i.recovered}}</td>
+            <td>{{i.deaths}}</td>
+
+            <td>{{i.active}}</td>
+            <td>{{i.lastupdatedtime}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="">
+      <footer class="text-center alert alert-dark card border-dark">© 2020 Copyright-Pranjal Maurya</footer>
+    </div>
+    <script src="{% static 'covid/js/jquery.js' %}"></script>
+     <script src="{% static 'covid/js/proper.js' %}"></script>
+       <script src="{% static 'covid/js/bootstrap.js' %}"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$('.da1').waypoint(function(direction){
+ $('.da1').addClass('animate__animated animate__shakeY')
+},{
+ offset:'50%'
+});
+$('.pic1').waypoint(function(direction){
+ $('.pic1').addClass('animate__animated animate__fadeIn')
+});
+$('.card1').waypoint(function(direction){
+ $('.card1').addClass('animate__animated animate__slideInLeft')
+});
+});
+</script>
+  </body>
+</html>
